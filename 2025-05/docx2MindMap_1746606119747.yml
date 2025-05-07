@@ -1,0 +1,684 @@
+app:
+  description: doc2MindMap
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: docx2MindMap
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.5@cc38c90a58d4b4e43c9a821d352829b2c2a8d6d742de9fec9e61e6b34865b496
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1745489969309-source-1745489979934-target
+      source: '1745489969309'
+      sourceHandle: source
+      target: '1745489979934'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1745489957834-source-1745570454935-target
+      source: '1745489957834'
+      sourceHandle: source
+      target: '1745570454935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: document-extractor
+      id: 1745570454935-true-1745489969309-target
+      source: '1745570454935'
+      sourceHandle: 'true'
+      target: '1745489969309'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1745571455077-source-1745571555675-target
+      source: '1745571455077'
+      sourceHandle: source
+      target: '1745571555675'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: document-extractor
+      id: 1745570558701-source-1745571455077-target
+      source: '1745570558701'
+      sourceHandle: source
+      target: '1745571455077'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: http-request
+      id: 1745573433160-source-1745570558701-target
+      source: '1745573433160'
+      sourceHandle: source
+      target: '1745570558701'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1745570454935-false-1745573237020-target
+      source: '1745570454935'
+      sourceHandle: 'false'
+      target: '1745573237020'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1745573237020-source-1745573433160-target
+      source: '1745573237020'
+      sourceHandle: source
+      target: '1745573433160'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: 1745489979934-source-1745742527143-target
+      source: '1745489979934'
+      sourceHandle: source
+      target: '1745742527143'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1745742527143-source-1745551361359-target
+      source: '1745742527143'
+      sourceHandle: source
+      target: '1745551361359'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: 1745571555675-source-1745743797756-target
+      source: '1745571555675'
+      sourceHandle: source
+      target: '1745743797756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1745743797756-source-1745746439014-target
+      source: '1745743797756'
+      sourceHandle: source
+      target: '1745746439014'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 测试ID bsAk1JUP
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: file
+          max_length: 48
+          options: []
+          required: false
+          type: file
+          variable: file
+        - label: fileId
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: fileId
+      height: 143
+      id: '1745489957834'
+      position:
+        x: 30
+        y: 287
+      positionAbsolute:
+        x: 30
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1745489957834'
+        - file
+      height: 91
+      id: '1745489969309'
+      position:
+        x: 636
+        y: 287
+      positionAbsolute:
+        x: 636
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1745489969309'
+          - text
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:3b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - edition_type: basic
+          id: bdd88e16-df24-4e72-90a3-6c230d962ee7
+          role: system
+          text: "你是文档总结大师，擅长提炼文档核心内容并生成结构化大纲。你会深入理解文档内容，而不仅仅依赖标题，确保总结准确反映关键信息，并以思维导图形式呈现层级关系。\n\
+            \n**输入内容**：\n{{#context#}}\n{{#1745489969309.text#}}\n**输出要求**：\n- 以Markdown格式输出，适合生成思维导图（如markmap工具）。\n\
+            - 使用层级结构：标题（#）表示主节点，无序列表（-）表示分支和子节点。\n- 确保内容精炼，关键信息通过有序或无序列表分条呈现。\n\n\
+            **参考格式**：\n# [中心主题]\n## [一级分支1]\n- [二级分支1.1]\n  - [三级分支1.1.1]\n  - [三级分支1.1.2]\n\
+            - [二级分支1.2]\n  - [三级分支1.2.1]\n  - [三级分支1.2.2]\n## [一级分支2]\n- [二级分支2.1]\n\
+            \  - [三级分支2.1.1]\n  - [三级分支2.1.2]\n- [二级分支2.2]\n  - [三级分支2.2.1]\n  - [三级分支2.2.2]\n\
+            ## [一级分支3]\n- [二级分支3.1]\n- [二级分支3.2]\n## 注意事项（可选）\n- [注意事项1]\n- [注意事项2]\n"
+        selected: false
+        structured_output_enabled: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1745489979934'
+      position:
+        x: 939
+        y: 287
+      positionAbsolute:
+        x: 939
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1745742527143'
+          - body
+          variable: text1
+        selected: false
+        title: 直接回复
+        type: end
+      height: 89
+      id: '1745551361359'
+      position:
+        x: 1545
+        y: 287
+      positionAbsolute:
+        x: 1545
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: exists
+            id: 9057f77e-8762-4c06-a7a5-326eb7374cfc
+            value: ''
+            varType: file
+            variable_selector:
+            - '1745489957834'
+            - file
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1745570454935'
+      position:
+        x: 333
+        y: 287
+      positionAbsolute:
+        x: 333
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: fileId=bsAk1JUP
+        headers: authorization:{{#1745573433160.token#}}
+        method: get
+        params: fileId:{{#1745489957834.fileId#}}
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          connect: 10
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 10
+          write: 10
+        title: 下载文件
+        type: http-request
+        url: http://10.11.24.110/fdfs/file/sensitiveDownload
+        variables: []
+      height: 166
+      id: '1745570558701'
+      position:
+        x: 1242
+        y: 501
+      positionAbsolute:
+        x: 1242
+        y: 501
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: true
+        selected: false
+        title: 文档提取器 2
+        type: document-extractor
+        variable_selector:
+        - '1745570558701'
+        - files
+      height: 91
+      id: '1745571455077'
+      position:
+        x: 1545
+        y: 496
+      positionAbsolute:
+        x: 1545
+        y: 496
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1745571455077'
+          - text
+        default_value:
+        - key: text
+          type: string
+          value: 模型理解过程中出现问题，工作流异常中断
+        desc: ''
+        error_strategy: default-value
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:3b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 84c54b9a-ddb6-4319-a655-129785c11de9
+          role: system
+          text: "你是文档总结大师，擅长提炼文档核心内容并生成结构化大纲。你会深入理解文档内容，而不仅仅依赖标题，确保总结准确反映关键信息，并以思维导图形式呈现层级关系。\n\
+            \n**输入内容**：\n{{#context#}}\n\n**输出要求**：\n- 以Markdown格式输出，适合生成思维导图（如markmap工具）。\n\
+            - 使用层级结构：标题（#）表示主节点，无序列表（-）表示分支和子节点。\n- 确保内容精炼，关键信息通过有序或无序列表分条呈现。\n\n\
+            **参考格式**：\n# [中心主题]\n## [一级分支1]\n- [二级分支1.1]\n  - [三级分支1.1.1]\n  - [三级分支1.1.2]\n\
+            - [二级分支1.2]\n  - [三级分支1.2.1]\n  - [三级分支1.2.2]\n## [一级分支2]\n- [二级分支2.1]\n\
+            \  - [三级分支2.1.1]\n  - [三级分支2.1.2]\n- [二级分支2.2]\n  - [三级分支2.2.1]\n  - [三级分支2.2.2]\n\
+            ## [一级分支3]\n- [二级分支3.1]\n- [二级分支3.2]\n## 注意事项（可选）\n- [注意事项1]\n- [注意事项2]\n"
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 125
+      id: '1745571555675'
+      position:
+        x: 1848
+        y: 497
+      positionAbsolute:
+        x: 1848
+        y: 497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-1338
+            key: ''
+            type: text
+            value: '{"password":"123456","username":"777777"}'
+          type: json
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 5000
+        selected: false
+        ssl_verify: true
+        timeout:
+          connect: 30
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 30
+          write: 30
+        title: 模拟用户登陆
+        type: http-request
+        url: http://10.11.24.110/api/auth/jwt/token
+        variables: []
+      height: 138
+      id: '1745573237020'
+      position:
+        x: 636
+        y: 473.5
+      positionAbsolute:
+        x: 636
+        y: 473.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import re\nimport json\n\ndef main(input):\n    \"\"\"\n    使用正则表达式从输入字符串中直接提取\
+          \ token。\n    \n    参数:\n    data (str): 包含 token 的字符串\n    \n    返回:\n\
+          \    dict: 返回包含 token 和 error 的字典\n    \"\"\"\n    # 初始化 error 字段为 None\n\
+          \    result = {\"token\": None, \"error\": None}\n    \n    try:\n     \
+          \   # 正则表达式匹配 token\n        token_pattern = r'\"token\":\"([^\"]+)\"'\n\
+          \        \n        # 使用 re.search 查找匹配的 token\n        match = re.search(token_pattern,\
+          \ input)       \n        if match:\n            # 如果匹配成功，提取 token\n    \
+          \        result[\"token\"] = match.group(1)\n        else:\n           \
+          \ # 如果没有匹配到 token，设置 error 信息\n            result[\"error\"] = \"没有找到 token\"\
+          \   \n    except Exception as e:\n        # 捕获异常并设置 error 信息\n        result[\"\
+          error\"] = f\"发生错误: {e}\"\n    return result"
+        code_language: python3
+        desc: ''
+        outputs:
+          error:
+            children: null
+            type: string
+          token:
+            children: null
+            type: string
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
+        selected: false
+        title: 提取token
+        type: code
+        variables:
+        - value_selector:
+          - '1745573237020'
+          - body
+          variable: input
+      height: 82
+      id: '1745573433160'
+      position:
+        x: 939
+        y: 500.5
+      positionAbsolute:
+        x: 939
+        y: 500.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-226
+            key: ''
+            type: text
+            value: '{{#1745489979934.text#}}'
+          type: raw-text
+        default_value:
+        - key: body
+          type: string
+          value: 模型理解过程中出现问题，工作流异常中断
+        - key: status_code
+          type: number
+          value: 0
+        - key: headers
+          type: object
+          value: '{}'
+        desc: ''
+        error_strategy: default-value
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 3040
+        selected: false
+        ssl_verify: true
+        timeout:
+          connect: 30
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 30
+          write: 30
+        title: 生成思维导图1
+        type: http-request
+        url: http://10.11.24.34:5001/upload
+        variables: []
+      height: 174
+      id: '1745742527143'
+      position:
+        x: 1242
+        y: 287
+      positionAbsolute:
+        x: 1242
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-792
+            key: ''
+            type: text
+            value: '{{#1745571555675.text#}}'
+          type: raw-text
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          connect: 30
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 30
+          write: 30
+        title: 生成思维导图2
+        type: http-request
+        url: http://10.11.24.34:5001/upload
+        variables: []
+      height: 138
+      id: '1745743797756'
+      position:
+        x: 2151
+        y: 497
+      positionAbsolute:
+        x: 2151
+        y: 497
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1745743797756'
+          - body
+          variable: text2
+        selected: false
+        title: 直接回复2
+        type: end
+      height: 89
+      id: '1745746439014'
+      position:
+        x: 2454
+        y: 497
+      positionAbsolute:
+        x: 2454
+        y: 497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -6.020770218576672
+      y: 17.434569676687488
+      zoom: 0.5607489143127355
