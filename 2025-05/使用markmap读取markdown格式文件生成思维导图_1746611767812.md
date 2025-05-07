@@ -39,7 +39,7 @@ markmap markdown/1741852665.md --no-open
 
 生成的html文件如下：
 
-![image-20250507155142102](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250507155142102.png)
+![image-20250507155142102.png](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250507155142102_1746614352232.png)
 
 ### 2. 代码逻辑实现
 
