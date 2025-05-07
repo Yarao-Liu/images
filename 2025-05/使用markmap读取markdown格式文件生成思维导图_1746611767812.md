@@ -149,7 +149,7 @@ if __name__ == "__main__":
 python markmap.py
 ```
 
-![image-20250507155828007](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250507155828007.png)
+![image-20250507155828007](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250507155828007_1746614462898.png)
 
 ### 附录
 
