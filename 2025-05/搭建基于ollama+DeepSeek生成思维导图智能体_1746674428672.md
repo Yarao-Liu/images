@@ -15,13 +15,13 @@
 
   3.1 创建工作流应用
 
-![image-20250508085834555](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508085834555.png)
+![image-20250508085834555](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508085834555_1746673630505.png)
 
   ​	创建智能体应用，输入应用名称、图标和描述，点击`创建`完成应用的创建。
 
   3.2 添加选择输入字段
 
-![image-20250508090829761](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508090829761.png)
+![image-20250508090829761](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508090829761_1746673644673.png)
 
   ​	这里有两个场景，一个场景是将用户上传的文件转换为思维导图；另一个场景是从已有应用系统中获取文件转换为思维导图。因此这里的开始节点有两个字段：file和fileId。
 
