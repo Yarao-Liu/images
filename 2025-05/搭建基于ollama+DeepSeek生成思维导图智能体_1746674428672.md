@@ -89,18 +89,17 @@
   
   ```
 
-  注意：大模型输入是文档提取节点的输出，需要再提示词中体现出来。示例中{{#context#}}和
-  {{#1745489969309.text#}}。
+  注意：大模型输入是文档提取节点的输出，需要在提示词中体现出来。示例中{{#context#}}和{{#1745489969309.text#}}。
 
   3.4.1 配置大模型节点
 
   ​	这里使用的大模型是qwen2.5:3b，需要设置大模型的温度、配置上下文和编写提示词，大模型节点的上下文是上个节点-文档提取器的输出。
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508103547425.png" alt="image-20250508103547425" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508103547425_1746673700635.png" alt="image-20250508103547425" style="zoom:33%;" />
 
   3.5 添加HTTP请求
 
-  <img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508104603075.png" alt="image-20250508104603075" style="zoom: 33%;" />
+  <img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508104603075_1746673708344.png" alt="image-20250508104603075" style="zoom: 33%;" />
 
   3.5.1 配置HTTP请求
 
@@ -108,13 +107,13 @@
   - 填写环境准备中搭建好的markdown生成在线脑图服务
   - 注意在body中选择raw，并在点击{x}选择LLM输出的text
 
-  ![image-20250508104449656](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508104449656.png)
+  ![image-20250508104449656](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508104449656_1746673704821.png)
 
   3.6 添加直接回复
 
   在右侧回复框中点击{x}选择http节点的body输出。
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508104707426.png" alt="image-20250508104707426" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508104707426_1746673711151.png" alt="image-20250508104707426" style="zoom:33%;" />
 
 <img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508111415768.png" alt="image-20250508111415768" style="zoom:33%;" />
 
@@ -123,21 +122,22 @@
 
   4.1 预览功能
 
-   <img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508105609538.png" alt="image-20250508105609538" style="zoom:33%;" />
+   <img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508105020224_1746673719020.png" alt="image-20250508105609538" style="zoom:33%;" />
 
    预览后点击上传文件，点击`开始运行`执行整个工作流。
 
   4.2 查看执行结果
 
-   <img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508105534469.png" alt="image-20250508105534469" style="zoom:33%;" />
+   <img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508105355526_1746673721693.png" alt="image-20250508105534469" style="zoom:33%;" />
 
    运行过程中可以追踪，看到每个节点的运行情况，可以对工作流进行优化。
 
-   <img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508105510712.png" alt="image-20250508105510712" style="zoom:33%;" />
+   <img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508105510712_1746673724535.png" alt="image-20250508105510712" style="zoom:33%;" />
 
   4.3 查看脑图
 
-   ![image-20250508105639724](C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508105639724.png)
+   ![image-20250508105639724](https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508105639724_1746673732660.png)
+
 5. #### 分支说明
 
    ​	此文章只对用户上传的文件进行解析生成思维导图的路径进行描述。另一种方式只是在此基础上添加了用户验证的文件下载两个HTTP节点和一个代码执行节点，这里不再赘述。
