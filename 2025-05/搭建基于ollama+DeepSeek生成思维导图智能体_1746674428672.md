@@ -35,17 +35,17 @@
 
   ​	点击开始节点，再点击加号可选择后续节点。这里简单判断文件是否存在来决定工作流走哪个分支，生成环境可能需要更完备的条件判断。
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508092008445.png" alt="image-20250508092008445" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508092008445_1746673664478.png" alt="image-20250508092008445" style="zoom:33%;" />
 
   3.3 添加文档提取器
 
   大模型不能直接处理文件，需要通过文档提取器读取文件，将文档解析为LLM便于理解的文本内容。
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508092523880.png" alt="image-20250508092523880" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508092523880_1746673672914.png" alt="image-20250508092523880" style="zoom:33%;" />
 
   3.3.1 配置文档提取器的变量名称
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508092739850.png" alt="image-20250508092739850" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508092739850_1746673685381.png" alt="image-20250508092739850" style="zoom:33%;" />
 
   每一个节点的输入变量可以选择工作流当前节点所在分支的所有变量，这里只需要设置为开始节点的文件。
 
