@@ -115,7 +115,7 @@
 
 <img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508104707426_1746673711151.png" alt="image-20250508104707426" style="zoom:33%;" />
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508111415768.png" alt="image-20250508111415768" style="zoom:33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508111415768_1746675641850.png" alt="image-20250508111415768" style="zoom:33%;" />
 
 
 4. #### 测试智能体
