@@ -27,7 +27,7 @@
 
   3.2.1 选择输入类型
 
-<img src="C:\Users\13439\AppData\Roaming\Typora\typora-user-images\image-20250508091145159.png" alt="image-20250508091145159" style="zoom: 33%;" />
+<img src="https://github.com/Yarao-Liu/images/blob/main/2025-05/image-20250508091145159_1746673656335.png" alt="image-20250508091145159" style="zoom: 33%;" />
 
   ​	file的类型是单文件，fileId的类型是文本。
 
