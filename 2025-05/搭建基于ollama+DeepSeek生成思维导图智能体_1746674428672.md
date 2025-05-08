@@ -9,7 +9,8 @@
 - 已搭建好读取markdown生成在线脑图服务
 
 2. #### **工作流展示**
-![doc2MindMap](C:\Users\13439\Desktop\doc2MindMap.png)
+![doc2MindMap](https://github.com/Yarao-Liu/images/blob/main/2025-05/doc2MindMap_1746673315906.png)
+
 3. #### **配置智能体**
 
   3.1 创建工作流应用
