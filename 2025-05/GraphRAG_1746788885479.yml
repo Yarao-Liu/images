@@ -1,0 +1,404 @@
+app:
+  description: 基于知识图谱的RAG
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: GraphRAG
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.5@cc38c90a58d4b4e43c9a821d352829b2c2a8d6d742de9fec9e61e6b34865b496
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1742960219758-source-1742960307411-target
+      source: '1742960219758'
+      sourceHandle: source
+      target: '1742960307411'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1742969234919-source-1742969525605-target
+      source: '1742969234919'
+      sourceHandle: source
+      target: '1742969525605'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1742960213357-source-1742960219758-target
+      source: '1742960213357'
+      sourceHandle: source
+      target: '1742960219758'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1742960307411-source-1742977256045-target
+      source: '1742960307411'
+      sourceHandle: source
+      target: '1742977256045'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1742977256045-source-1742977313265-target
+      source: '1742977256045'
+      sourceHandle: source
+      target: '1742977313265'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1742977313265-source-1742969234919-target
+      source: '1742977313265'
+      sourceHandle: source
+      target: '1742969234919'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 请输入您的问题
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: query
+      height: 89
+      id: '1742960213357'
+      position:
+        x: 474.8322963453615
+        y: -82.95416322789468
+      positionAbsolute:
+        x: 474.8322963453615
+        y: -82.95416322789468
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: "{\n    \"statements\": [{\n        \"statement\": \"MATCH (n)\
+              \ RETURN n, labels(n) as labels\",\n        \"parameters\": {}\n   \
+              \ }]\n}"
+          type: raw-text
+        desc: ''
+        headers: 'Authorization:Basic bmVvNGo6MXFheiFRQVo=
+
+          Content-Type:application/json'
+        method: POST
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: true
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://10.11.24.34:7474/db/neo4j/tx/commit
+        variables: []
+      height: 138
+      id: '1742960219758'
+      position:
+        x: 940.8282484118478
+        y: -82.95416322789468
+      positionAbsolute:
+        x: 940.8282484118478
+        y: -82.95416322789468
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(arg1: str, query: str) -> dict:\n    data =\
+          \ json.loads(arg1)\n    results = data[\"results\"][0][\"data\"]\n\n   \
+          \ # 提取并整理文本\n    res = \"\"\n    for item in results:\n        row = item[\"\
+          row\"]\n        name = row[0].get(\"name\", \"\")\n        if name in query:\n\
+          \            res = res + name + \",\"\n    \n    # 合并为纯文本\n    return {\n\
+          \        \"result\": res,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1742960219758'
+          - body
+          variable: arg1
+        - value_selector:
+          - '1742960213357'
+          - query
+          variable: query
+      height: 53
+      id: '1742960307411'
+      position:
+        x: 1393.4039274103432
+        y: -40.409439915446725
+      positionAbsolute:
+        x: 1393.4039274103432
+        y: -40.409439915446725
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742977313265'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:3b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 44337660-4631-4b7a-a4de-05958ab41ba4
+          role: system
+          text: 你是一个优秀且全能型的厨师
+        - id: bd97898a-e38f-41db-ada6-15cd8d9ae4ac
+          role: user
+          text: '请根据如下信息：
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            请回答如下问题：
+
+            {{#1742960213357.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1742969234919'
+      position:
+        x: 1107.1870634308134
+        y: 273.4889076884606
+      positionAbsolute:
+        x: 1107.1870634308134
+        y: 273.4889076884606
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742969234919'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1742969525605'
+      position:
+        x: 1487.9051191082879
+        y: 260.17473762941813
+      positionAbsolute:
+        x: 1487.9051191082879
+        y: 260.17473762941813
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: "{\n    \"statements\": [{\n        \"statement\": \"WITH SPLIT($ingredients,\
+              \ \\\",\\\") AS ingredients\\nUNWIND ingredients AS ingredient_name\\\
+              nMATCH (i:Ingredient {name: ingredient_name})\\nOPTIONAL MATCH (i)<-[:CONTAINS]-(r:Recipe)\\\
+              nWITH ingredient_name, r\\nOPTIONAL MATCH (r)-[:CONTAINS]->(ingredient_node:Ingredient)\\\
+              nWITH ingredient_name, r, COLLECT(DISTINCT ingredient_node.name) AS\
+              \ recipe_ingredients\\nWITH ingredient_name, r, recipe_ingredients,\
+              \ r.name AS recipe_name, r.dish AS recipe_type, r.description AS description,\
+              \ r.author AS author, r.instructions AS instructions\\nWITH ingredient_name,\
+              \ COLLECT({\\n  recipe_name: recipe_name,\\n  recipe_type: recipe_type,\\\
+              n  description: description,\\n  author: author,\\n  instructions: instructions,\\\
+              n  ingredients: recipe_ingredients\\n}) AS related_recipes\\nOPTIONAL\
+              \ MATCH (r)-[:BELONGS_TO]->(k:Keyword)\\nWITH ingredient_name, related_recipes,\
+              \ COLLECT(DISTINCT k.name) AS keywords\\nRETURN {\\n  entity: ingredient_name,\\\
+              n  related_recipes: related_recipes,\\n  keywords: keywords\\n} AS result\"\
+              ,\n        \"parameters\": {\n            \"ingredients\": \"{{#1742960307411.result#}}\"\
+              \n        }\n    }]\n}"
+          type: raw-text
+        desc: ''
+        headers: 'Authorization:Basic bmVvNGo6MXFheiFRQVo=
+
+          Content-Type:application/json'
+        method: POST
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: http://10.11.24.34:7474/db/neo4j/tx/commit
+        variables: []
+      height: 138
+      id: '1742977256045'
+      position:
+        x: 485.49045467311134
+        y: 181.4537309214892
+      positionAbsolute:
+        x: 485.49045467311134
+        y: 181.4537309214892
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    data = json.loads(arg1)\n    results\
+          \ = data[\"results\"][0][\"data\"]\n\n    # 提取并整理文本\n    res = \"\"\n  \
+          \  for item in results:\n        row = item[\"row\"]\n        recipes =\
+          \ row[0].get(\"related_recipes\")\n        if len(recipes) > 0:\n      \
+          \      for recipe in recipes:\n                res = res + \"菜名为\" + recipe[\"\
+          recipe_name\"] + \"，原料为\" + \",\".join(recipe[\"ingredients\"]) + \"，制作步骤为\"\
+          \ + \",\".join(recipe[\"instructions\"]) + \";\"\n    return {\n       \
+          \ \"result\": res,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1742977256045'
+          - body
+          variable: arg1
+      height: 53
+      id: '1742977313265'
+      position:
+        x: 760.4662217315301
+        y: 294.1998388914155
+      positionAbsolute:
+        x: 760.4662217315301
+        y: 294.1998388914155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -602.8253705112011
+      y: 107.26488900077806
+      zoom: 1.1088270869361894
