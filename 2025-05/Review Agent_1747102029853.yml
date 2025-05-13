@@ -1,0 +1,693 @@
+app:
+  description: '111'
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Review Agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.12@2ab1fcd77138b7ecdd707790aa1936d5c187fca547ebd165728237b0630c3a44
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1746798289205-source-1746798300661-target
+      source: '1746798289205'
+      sourceHandle: source
+      target: '1746798300661'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1746799405028-source-1746798289205-target
+      source: '1746799405028'
+      sourceHandle: source
+      target: '1746798289205'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1747014443424-source-1747015987808-target
+      source: '1747014443424'
+      sourceHandle: source
+      target: '1747015987808'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1747014446240-source-1747016042771-target
+      source: '1747014446240'
+      sourceHandle: source
+      target: '1747016042771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1747015987808-source-1747016064387-target
+      source: '1747015987808'
+      sourceHandle: source
+      target: '1747016064387'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1747016042771-source-1747016079084-target
+      source: '1747016042771'
+      sourceHandle: source
+      target: '1747016079084'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1746798276010-source-1746798283236-target
+      source: '1746798276010'
+      sourceHandle: source
+      target: '1746798283236'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1747014216396-true-1746799405028-target
+      source: '1747014216396'
+      sourceHandle: 'true'
+      target: '1746799405028'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1747014216396-c196bf91-4fd0-4017-9318-5a468e3b342d-1747014443424-target
+      source: '1747014216396'
+      sourceHandle: c196bf91-4fd0-4017-9318-5a468e3b342d
+      target: '1747014443424'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1747014216396-7875638e-774b-442f-a800-174a5e1f113a-1747014446240-target
+      source: '1747014216396'
+      sourceHandle: 7875638e-774b-442f-a800-174a5e1f113a
+      target: '1747014446240'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: if-else
+      id: 1747014169411-source-1747014216396-target
+      source: '1747014169411'
+      sourceHandle: source
+      target: '1747014216396'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: if-else
+      id: 1746798283236-source-1747014216396-target
+      source: '1746798283236'
+      sourceHandle: source
+      target: '1747014216396'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: variable-aggregator
+      id: 1746798276010-source-1747014169411-target
+      source: '1746798276010'
+      sourceHandle: source
+      target: '1747014169411'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: file
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file
+      height: 88
+      id: '1746798276010'
+      position:
+        x: 30
+        y: 310
+      positionAbsolute:
+        x: 30
+        y: 310
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文本提取
+        type: document-extractor
+        variable_selector:
+        - '1746798276010'
+        - file
+      height: 90
+      id: '1746798283236'
+      position:
+        x: 333
+        y: 448
+      positionAbsolute:
+        x: 333
+        y: 448
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746799405028'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct-128K
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 9bb30523-868f-49aa-b8f6-4f8a4c84628c
+          role: system
+          text: '你是一个严格的文档内容审查大师，知识库的内容具有权威性，只可以依据提供的知识库内容审查文档，禁止基于预训练数据或外部信息自由发挥。必须全面审查文档，指出所有概念描述不合理的地方及数据或案例引用错误，并给出正确描述。如果内容与知识库无法匹配，直接说明原因，不得自行推测或补充。
+
+            审查内容包括：
+
+            1. 概念描述是否准确，是否存在混淆或误用；
+
+            2. 数据或案例引用是否正确。
+
+            需要依据以下知识库内容审查文档：{{#context#}}
+
+            待审查文档内容如下：{{#1746798283236.text#}}
+
+            输出要求：
+
+            1. 按段落或错误类型分类，列出文档中所有错误，不得遗漏；
+
+            2. 每处错误包括：错误位置（段落编号/具体位置）、错误的概念描述或数据引用（引用原文）、正确的概念描述或数据引用（引用知识库）；
+
+            3. 总结文档中总共发现的错误数量；
+
+            4. 如有内容与知识库无法匹配，简要描述即可。'
+        selected: false
+        title: 规范检查
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1746798289205'
+      position:
+        x: 1242
+        y: 310
+      positionAbsolute:
+        x: 1242
+        y: 310
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1746798289205'
+          - text
+          variable: text
+        selected: true
+        title: 直接输出
+        type: end
+      height: 88
+      id: '1746798300661'
+      position:
+        x: 1545
+        y: 310
+      positionAbsolute:
+        x: 1545
+        y: 310
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - 42Yu0fyjaf2VKTcN0WwzGQK4Sxey6nPabJY33WLwE/Z9FmMoCsGbZ7gHyll6tnrS
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: netease-youdao/bce-reranker-base_v1
+            provider: langgenius/siliconflow/siliconflow
+          score_threshold: null
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: nomic-embed-text:latest
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1746798283236'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 任务书规范
+        type: knowledge-retrieval
+      height: 90
+      id: '1746799405028'
+      position:
+        x: 939
+        y: 310
+      positionAbsolute:
+        x: 939
+        y: 310
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        output_type: file
+        selected: false
+        title: 变量提取
+        type: variable-aggregator
+        variables:
+        - - '1746798276010'
+          - file
+      height: 106
+      id: '1747014169411'
+      position:
+        x: 333
+        y: 302
+      positionAbsolute:
+        x: 333
+        y: 302
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 3ff7df4d-8c5c-4504-8e8e-920b5bf3d94b
+            value: 任务书
+            varType: file
+            variable_selector:
+            - '1746798276010'
+            - file
+            - name
+          id: 'true'
+          logical_operator: and
+        - case_id: c196bf91-4fd0-4017-9318-5a468e3b342d
+          conditions:
+          - comparison_operator: contains
+            id: 43a6b989-cfcb-464c-b33a-86ee8629b593
+            value: 研制报告
+            varType: file
+            variable_selector:
+            - '1746798276010'
+            - file
+            - name
+          id: c196bf91-4fd0-4017-9318-5a468e3b342d
+          logical_operator: and
+        - case_id: 7875638e-774b-442f-a800-174a5e1f113a
+          conditions:
+          - comparison_operator: contains
+            id: 2eb0dd4e-522a-4101-acbf-2a634e070600
+            value: 方案报告
+            varType: file
+            variable_selector:
+            - '1746798276010'
+            - file
+            - name
+          id: 7875638e-774b-442f-a800-174a5e1f113a
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 220
+      id: '1747014216396'
+      position:
+        x: 636
+        y: 310
+      positionAbsolute:
+        x: 636
+        y: 310
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - 42Yu0fyjaf2VKTcN0WwzGQK4Sxey6nPabJY33WLwE/Z9FmMoCsGbZ7gHyll6tnrS
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: netease-youdao/bce-reranker-base_v1
+            provider: langgenius/siliconflow/siliconflow
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: nomic-embed-text:latest
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1746798283236'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 研制报告规范
+        type: knowledge-retrieval
+      height: 90
+      id: '1747014443424'
+      position:
+        x: 939
+        y: 440
+      positionAbsolute:
+        x: 939
+        y: 440
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - 42Yu0fyjaf2VKTcN0WwzGQK4Sxey6nPabJY33WLwE/Z9FmMoCsGbZ7gHyll6tnrS
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: netease-youdao/bce-reranker-base_v1
+            provider: langgenius/siliconflow/siliconflow
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: nomic-embed-text:latest
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1746798283236'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 方案报告规范
+        type: knowledge-retrieval
+      height: 90
+      id: '1747014446240'
+      position:
+        x: 939
+        y: 570
+      positionAbsolute:
+        x: 939
+        y: 570
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747014443424'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct-128K
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 8874509f-4e61-4360-87a4-0ee146209daf
+          role: system
+          text: '你是一个严格的文档内容审查大师，知识库的内容具有权威性，只可以依据提供的知识库内容审查文档，禁止基于预训练数据或外部信息自由发挥。必须全面审查文档，指出所有概念描述不合理的地方及数据或案例引用错误，并给出正确描述。如果内容与知识库无法匹配，直接说明原因，不得自行推测或补充。
+
+            审查内容包括：
+
+            1. 概念描述是否准确，是否存在混淆或误用；
+
+            2. 数据或案例引用是否正确。
+
+            需要依据以下知识库内容审查文档：{{#context#}}
+
+            待审查文档内容如下：{{#1746798283236.text#}}
+
+            输出要求：
+
+            1. 按段落或错误类型分类，列出文档中所有错误，不得遗漏；
+
+            2. 每处错误包括：错误位置（段落编号/具体位置）、错误的概念描述或数据引用（引用原文）、正确的概念描述或数据引用（引用知识库）；
+
+            3. 总结文档中总共发现的错误数量；
+
+            4. 如有内容与知识库无法匹配，简要描述即可。'
+        selected: false
+        title: 规范检查
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1747015987808'
+      position:
+        x: 1242
+        y: 440
+      positionAbsolute:
+        x: 1242
+        y: 440
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747014446240'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: f1e715e4-eee6-4bfa-85aa-093991e0c4ce
+          role: system
+          text: '你是一个严格的文档内容审查大师，知识库的内容具有权威性，只可以依据提供的知识库内容审查文档，禁止基于预训练数据或外部信息自由发挥。必须全面审查文档，指出所有概念描述不合理的地方及数据或案例引用错误，并给出正确描述。如果内容与知识库无法匹配，直接说明原因，不得自行推测或补充。
+
+            审查内容包括：
+
+            1. 概念描述是否准确，是否存在混淆或误用；
+
+            2. 数据或案例引用是否正确。
+
+            需要依据以下知识库内容审查文档：{{#context#}}
+
+            待审查文档内容如下：{{#1746798283236.text#}}
+
+            输出要求：
+
+            1. 按段落或错误类型分类，列出文档中所有错误，不得遗漏；
+
+            2. 每处错误包括：错误位置（段落编号/具体位置）、错误的概念描述或数据引用（引用原文）、正确的概念描述或数据引用（引用知识库）；
+
+            3. 总结文档中总共发现的错误数量；
+
+            4. 如有内容与知识库无法匹配，简要描述即可。'
+        selected: false
+        title: 规范检查
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1747016042771'
+      position:
+        x: 1242
+        y: 570
+      positionAbsolute:
+        x: 1242
+        y: 570
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1747015987808'
+          - text
+          variable: text
+        selected: false
+        title: 直接输出
+        type: end
+      height: 88
+      id: '1747016064387'
+      position:
+        x: 1545
+        y: 440
+      positionAbsolute:
+        x: 1545
+        y: 440
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1747016042771'
+          - text
+          variable: text3
+        selected: false
+        title: 直接输出
+        type: end
+      height: 88
+      id: '1747016079084'
+      position:
+        x: 1545
+        y: 570
+      positionAbsolute:
+        x: 1545
+        y: 570
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -282.99999999999994
+      y: -56.00000000000006
+      zoom: 0.7
