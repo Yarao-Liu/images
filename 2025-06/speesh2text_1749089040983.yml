@@ -1,0 +1,248 @@
+app:
+  description: 语音转文字
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: speesh2text
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1749084656431-source-1749086559764-target
+      source: '1749084656431'
+      sourceHandle: source
+      target: '1749086559764'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1749086559764-source-1749086575604-target
+      source: '1749086559764'
+      sourceHandle: source
+      target: '1749086575604'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions:
+          - .aac
+          allowed_file_types:
+          - custom
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: file
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file
+      height: 90
+      id: '1749084656431'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The audio file to be converted.
+            ja_JP: The audio file to be converted.
+            pt_BR: The audio file to be converted.
+            zh_Hans: 要转换的音频文件。
+          label:
+            en_US: Audio File
+            ja_JP: Audio File
+            pt_BR: Audio File
+            zh_Hans: 音频文件
+          llm_description: The audio file to be converted.
+          max: null
+          min: null
+          name: audio_file
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: file
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            ja_JP: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            pt_BR: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            zh_Hans: 所有可用的 ASR 模型。你可以在设置中的模型供应商里配置。
+          label:
+            en_US: Model
+            ja_JP: Model
+            pt_BR: Model
+            zh_Hans: Model
+          llm_description: null
+          max: null
+          min: null
+          name: model
+          options:
+          - label:
+              en_US: whisper-1(langgenius/openai/openai)
+              ja_JP: whisper-1(langgenius/openai/openai)
+              pt_BR: whisper-1(langgenius/openai/openai)
+              zh_Hans: whisper-1(langgenius/openai/openai)
+            value: langgenius/openai/openai#whisper-1
+          - label:
+              en_US: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              ja_JP: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              pt_BR: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              zh_Hans: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+            value: langgenius/siliconflow/siliconflow#FunAudioLLM/SenseVoiceSmall
+          - label:
+              en_US: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              ja_JP: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              pt_BR: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+              zh_Hans: FunAudioLLM/SenseVoiceSmall(langgenius/siliconflow/siliconflow)
+            value: langgenius/siliconflow/siliconflow#FunAudioLLM/SenseVoiceSmall
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        params:
+          audio_file: ''
+          model: ''
+        provider_id: audio
+        provider_name: audio
+        provider_type: builtin
+        selected: false
+        title: 语音转文字
+        tool_configurations:
+          model: langgenius/siliconflow/siliconflow#FunAudioLLM/SenseVoiceSmall
+        tool_description: 将音频文件转换为文本。
+        tool_label: Speech To Text
+        tool_name: asr
+        tool_parameters:
+          audio_file:
+            type: variable
+            value:
+            - '1749084656431'
+            - file
+        type: tool
+      height: 90
+      id: '1749086559764'
+      position:
+        x: 383
+        y: 282
+      positionAbsolute:
+        x: 383
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1749086559764'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1749086575604'
+      position:
+        x: 686
+        y: 282
+      positionAbsolute:
+        x: 686
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 115.35172444285695
+      y: -123.12436399404191
+      zoom: 1.1486983608380483
