@@ -1,0 +1,273 @@
+app:
+  description: http请求直接连接langchain-chatchat的知识库
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 外部知识库
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 100
+        batch_count_limit: 5
+        file_size_limit: 100
+        image_file_size_limit: 100
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1750129705175-source-1750129797486-target
+      source: '1750129705175'
+      sourceHandle: source
+      target: '1750129797486'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: http-request
+      id: 1750129797486-source-1750129918394-target
+      source: '1750129797486'
+      sourceHandle: source
+      target: '1750129918394'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1750129918394-source-1750130044497-target
+      source: '1750129918394'
+      sourceHandle: source
+      target: '1750130044497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1750130044497-source-1750130055032-target
+      source: '1750130044497'
+      sourceHandle: source
+      target: '1750130055032'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1750129705175'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://10.11.24.34:7861/knowledge_base/list_knowledge_bases
+        variables: []
+      height: 153
+      id: '1750129797486'
+      position:
+        x: 383
+        y: 282
+      positionAbsolute:
+        x: 383
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-365
+            key: ''
+            type: text
+            value: "{\n  \"query\": \"你好\",\n  \"mode\": \"local_kb\",\n  \"kb_name\"\
+              : \"test\",\n  \"top_k\": 3,\n  \"score_threshold\": 2,\n  \"history\"\
+              : [],\n  \"stream\": true,\n  \"model\": \"qwen3:4b\",\n  \"temperature\"\
+              : 0.7,\n  \"max_tokens\": 0,\n  \"prompt_name\": \"default\",\n  \"\
+              return_direct\": false\n}"
+          type: json
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: http://10.11.24.34:7861/chat/kb_chat
+        variables: []
+      height: 137
+      id: '1750129918394'
+      position:
+        x: 722
+        y: 289
+      positionAbsolute:
+        x: 722
+        y: 289
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1750129918394'
+          - body
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 0944091f-36e8-4c4d-b9e5-b1ef249a55ef
+          role: system
+          text: 你是一个人工智能助手，依据{{#context#}}回复用户的提问。
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1750130044497'
+      position:
+        x: 1025
+        y: 289
+      positionAbsolute:
+        x: 1025
+        y: 289
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1750130044497.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: '1750130055032'
+      position:
+        x: 1328
+        y: 289
+      positionAbsolute:
+        x: 1328
+        y: 289
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 66.5
+      y: -125.5
+      zoom: 1
