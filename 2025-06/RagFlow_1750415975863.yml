@@ -1,0 +1,440 @@
+app:
+  description: RagFlow
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: RagFlow
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: junjiem/mcp_sse:0.2.1@53cc613667fcf91dd7208dd5f6d2c8df3c7ff0af8b79e8f3c0a430f1b39bda4c
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 100
+        batch_count_limit: 5
+        file_size_limit: 100
+        image_file_size_limit: 100
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1750398980739-source-1750398989826-target
+      selected: false
+      source: '1750398980739'
+      sourceHandle: source
+      target: '1750398989826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1750398989826-source-1750399005771-target
+      source: '1750398989826'
+      sourceHandle: source
+      target: '1750399005771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1750399005771-source-llm-target
+      source: '1750399005771'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: dataset_ids
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: dataset_ids
+        - label: documents_ids
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: documents_ids
+        - label: question
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: question
+      height: 140
+      id: '1750398980739'
+      position:
+        x: 30
+        y: 270
+      positionAbsolute:
+        x: 30
+        y: 270
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1750399005771'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 0536fdfb-d7af-4956-ac8d-f9317229279a
+          role: system
+          text: '你是一个人工智能助手，根据知识库的内容回答用户的问题，当完全无法从知识库中匹配内容时，回答中要包含“无法匹配知识库的内容”的字样。
+
+            以下是知识库的内容：
+
+            {{#context#}}{{#1750399005771.text#}}
+
+            以上是知识库的内容。'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: llm
+      position:
+        x: 939
+        y: 270
+      positionAbsolute:
+        x: 939
+        y: 270
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1242
+        y: 270
+      positionAbsolute:
+        x: 1242
+        y: 270
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(arg1: str, arg2: str, arg3: str) -> dict:\n\
+          \    # 使用列表而不是集合来存储 dataset_ids 和 documents_ids\n    inner_dict = {\n  \
+          \      \"dataset_ids\": [arg1],  # 使用列表而非集合\n        \"documents_ids\":\
+          \ [arg2],  # 使用列表而非集合\n        \"question\": arg3\n    }\n\n    # 将字典转换为\
+          \ JSON 字符串\n    json_string_output = json.dumps(inner_dict, ensure_ascii=False)\n\
+          \    \n    return {\n        \"result\": json_string_output\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1750398980739'
+          - dataset_ids
+          variable: arg1
+        - value_selector:
+          - '1750398980739'
+          - documents_ids
+          variable: arg2
+        - value_selector:
+          - '1750398980739'
+          - question
+          variable: arg3
+      height: 52
+      id: '1750398989826'
+      position:
+        x: 333
+        y: 270
+      positionAbsolute:
+        x: 333
+        y: 270
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Name of the tool to execute.
+            ja_JP: Name of the tool to execute.
+            pt_BR: Name of the tool to execute.
+            zh_Hans: 要执行的工具的名称。
+          label:
+            en_US: Tool Name
+            ja_JP: Tool Name
+            pt_BR: Tool Name
+            zh_Hans: 工具名称
+          llm_description: Name of the MCP tool to execute.
+          max: null
+          min: null
+          name: tool_name
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Tool arguments (JSON string in the python dict[str, Any] format).
+            ja_JP: Tool arguments (JSON string in the python dict[str, Any] format).
+            pt_BR: Tool arguments (JSON string in the python dict[str, Any] format).
+            zh_Hans: 工具的参数。
+          label:
+            en_US: Arguments
+            ja_JP: Arguments
+            pt_BR: Arguments
+            zh_Hans: 参数
+          llm_description: MCP Tool arguments (JSON string in the python dict[str,
+            Any] format).
+          max: null
+          min: null
+          name: arguments
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Fetch and call the preset MCP Resources as Tools.
+            ja_JP: Fetch and call the preset MCP Resources as Tools.
+            pt_BR: Fetch and call the preset MCP Resources as Tools.
+            zh_Hans: 将预设的 MCP Resources 作为 Tools 返回和调用。
+          label:
+            en_US: MCP Resources as Tools
+            ja_JP: MCP Resources as Tools
+            pt_BR: MCP Resources as Tools
+            zh_Hans: MCP 资源作为工具
+          llm_description: ''
+          max: null
+          min: null
+          name: resources_as_tools
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Fetch and call the preset MCP Prompts as Tools.
+            ja_JP: Fetch and call the preset MCP Prompts as Tools.
+            pt_BR: Fetch and call the preset MCP Prompts as Tools.
+            zh_Hans: 将预设的 MCP Prompts 作为 Tools 返回和调用。
+          label:
+            en_US: MCP Prompts as Tools
+            ja_JP: MCP Prompts as Tools
+            pt_BR: MCP Prompts as Tools
+            zh_Hans: MCP 提示词作为工具
+          llm_description: ''
+          max: null
+          min: null
+          name: prompts_as_tools
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: MCP Servers config, support multiple MCP services. (Optional, Filling
+              in this field will overwrite the MCP Servers config entered during authorization.)
+            ja_JP: MCP Servers config, support multiple MCP services. (Optional, Filling
+              in this field will overwrite the MCP Servers config entered during authorization.)
+            pt_BR: MCP Servers config, support multiple MCP services. (Optional, Filling
+              in this field will overwrite the MCP Servers config entered during authorization.)
+            zh_Hans: MCP服务配置，支持多个MCP服务。 （选填，填写后将覆盖授权时填写的MCP服务配置。）
+          label:
+            en_US: MCP Servers config
+            ja_JP: MCP Servers config
+            pt_BR: MCP Servers config
+            zh_Hans: MCP 服务配置
+          llm_description: ''
+          max: null
+          min: null
+          name: servers_config
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arguments: ''
+          prompts_as_tools: ''
+          resources_as_tools: ''
+          servers_config: ''
+          tool_name: ''
+        provider_id: junjiem/mcp_sse/mcp_sse
+        provider_name: junjiem/mcp_sse/mcp_sse
+        provider_type: builtin
+        selected: false
+        title: 调用 MCP 工具
+        tool_configurations:
+          prompts_as_tools: 1
+          resources_as_tools: 1
+        tool_description: 调用 MCP 服务端工具。
+        tool_label: 调用 MCP 工具
+        tool_name: mcp_sse_call_tool
+        tool_parameters:
+          arguments:
+            type: mixed
+            value: '{{#1750398989826.result#}}'
+          servers_config:
+            type: mixed
+            value: ''
+          tool_name:
+            type: mixed
+            value: ragflow_retrieval
+        type: tool
+      height: 114
+      id: '1750399005771'
+      position:
+        x: 636
+        y: 270
+      positionAbsolute:
+        x: 636
+        y: 270
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 140.95748037740555
+      y: 132.45687418796797
+      zoom: 0.804088852586634
