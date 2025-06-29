@@ -1,0 +1,463 @@
+app:
+  description: 迭代原理
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: foreach
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1748593610447-source-1748593665139-target
+      source: '1748593610447'
+      sourceHandle: source
+      target: '1748593665139'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1748593665139'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1748593665139start-source-1748593668970-target
+      source: 1748593665139start
+      sourceHandle: source
+      target: '1748593668970'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: end
+      id: 1748593665139-source-1748594048772-target
+      source: '1748593665139'
+      sourceHandle: source
+      target: '1748594048772'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: 1748593417761-source-1748594166706-target
+      source: '1748593417761'
+      sourceHandle: source
+      target: '1748594166706'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: code
+      id: 1748594166706-source-1748593610447-target
+      source: '1748594166706'
+      sourceHandle: source
+      target: '1748593610447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: 1748593417761-source-1748594189523-target
+      source: '1748593417761'
+      sourceHandle: source
+      target: '1748594189523'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: code
+      id: 1748594189523-source-1748593610447-target
+      source: '1748594189523'
+      sourceHandle: source
+      target: '1748593610447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: 1748593417761-source-1748594202276-target
+      source: '1748593417761'
+      sourceHandle: source
+      target: '1748594202276'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: code
+      id: 1748594202276-source-1748593610447-target
+      source: '1748594202276'
+      sourceHandle: source
+      target: '1748593610447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1748593665139'
+        sourceType: llm
+        targetType: template-transform
+      id: 1748593668970-source-1748594973638-target
+      source: '1748593668970'
+      sourceHandle: source
+      target: '1748594973638'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1748593417761'
+      position:
+        x: 30
+        y: 226.5
+      positionAbsolute:
+        x: 30
+        y: 226.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str, arg2: str,arg3:str) -> dict:\n    arr =[arg1,arg2,arg3]\n\
+          \    return {\n        \"result\":arr,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 合并为列表
+        type: code
+        variables:
+        - value_selector:
+          - '1748594166706'
+          - output
+          variable: arg1
+        - value_selector:
+          - '1748594189523'
+          - output
+          variable: arg2
+        - value_selector:
+          - '1748594202276'
+          - output
+          variable: arg3
+      height: 53
+      id: '1748593610447'
+      position:
+        x: 638
+        y: 319.5
+      positionAbsolute:
+        x: 638
+        y: 319.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 209
+        is_parallel: false
+        iterator_selector:
+        - '1748593610447'
+        - result
+        output_selector:
+        - '1748594973638'
+        - output
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1748593665139start
+        title: 迭代
+        type: iteration
+        width: 812
+      height: 209
+      id: '1748593665139'
+      position:
+        x: 936.2857142857142
+        y: 319.5
+      positionAbsolute:
+        x: 936.2857142857142
+        y: 319.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 812
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1748593665139start
+      parentId: '1748593665139'
+      position:
+        x: 60
+        y: 80.5
+      positionAbsolute:
+        x: 996.2857142857142
+        y: 400
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1748593665139'
+          - item
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1748593665139'
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-7B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: cc9745be-6f58-4c5f-ac28-5be4d6b4dff6
+          role: system
+          text: '用下面字母开头造一个英文单词
+
+            ---
+
+            {{#context#}}
+
+            '
+        selected: false
+        title: 单词生成器
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1748593668970'
+      parentId: '1748593665139'
+      position:
+        x: 199.71428571428578
+        y: 78.57142857142856
+      positionAbsolute:
+        x: 1136
+        y: 398.07142857142856
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1748593665139'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1748594048772'
+      position:
+        x: 1814
+        y: 319.5
+      positionAbsolute:
+        x: 1814
+        y: 319.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: a
+        title: A
+        type: template-transform
+        variables: []
+      height: 53
+      id: '1748594166706'
+      position:
+        x: 334
+        y: 226.5
+      positionAbsolute:
+        x: 334
+        y: 226.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: b
+        title: B
+        type: template-transform
+        variables: []
+      height: 53
+      id: '1748594189523'
+      position:
+        x: 334
+        y: 319.5
+      positionAbsolute:
+        x: 334
+        y: 319.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: c
+        title: C
+        type: template-transform
+        variables: []
+      height: 53
+      id: '1748594202276'
+      position:
+        x: 334
+        y: 412.5
+      positionAbsolute:
+        x: 334
+        y: 412.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1748593665139'
+        selected: true
+        template: Loop {{arg2}}:{{arg1}}->{{arg3}}
+        title: 格式处理
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1748593665139'
+          - item
+          variable: arg1
+        - value_selector:
+          - '1748593665139'
+          - index
+          variable: arg2
+        - value_selector:
+          - '1748593668970'
+          - text
+          variable: arg3
+      height: 53
+      id: '1748594973638'
+      parentId: '1748593665139'
+      position:
+        x: 508
+        y: 78
+      positionAbsolute:
+        x: 1444.2857142857142
+        y: 397.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: -584.6999999999998
+      y: 114.70000000000005
+      zoom: 0.6999999999999998
