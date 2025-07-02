@@ -1,0 +1,429 @@
+app:
+  description: 长篇小说
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: LongNovel
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.15@775950e2071600bd3ba0415ec306c1b1582bc4a2a94688d642f627d112d87cd3
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: llm
+      id: 1751372839445-llm
+      source: '1751372839445'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: llm-source-1751372955963-target
+      source: llm
+      sourceHandle: source
+      target: '1751372955963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1751372955963-source-1751372976061-target
+      source: '1751372955963'
+      sourceHandle: source
+      target: '1751372976061'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1751372976061'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1751372976061start-source-1751372978630-target
+      source: 1751372976061start
+      sourceHandle: source
+      target: '1751372978630'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1751372976061-source-1751373440370-target
+      source: '1751372976061'
+      sourceHandle: source
+      target: '1751373440370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1751373440370-source-1751373462756-target
+      source: '1751373440370'
+      sourceHandle: source
+      target: '1751373462756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: title
+          max_length: 480
+          options: []
+          required: true
+          type: paragraph
+          variable: title
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: outline
+          max_length: 48000
+          options: []
+          required: true
+          type: paragraph
+          variable: outline
+      height: 114
+      id: '1751372839445'
+      position:
+        x: 30
+        y: 304.5
+      positionAbsolute:
+        x: 30
+        y: 304.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 5d514ae0-5d63-40c1-bd7e-5af960dc5c14
+          role: system
+          text: "<instruction>\n你需要根据提供的标题和大纲撰写一篇长篇文章。请按照以下步骤完成任务：\n\n1. 使用 {{#1751372839445.title#}}作为文章的标题。\n\
+            2. 根据提供的{{#1751372839445.outline#}}来组织文章。大纲中的每个部分应对应文章中的一个章节。\n3. 确保文章内容丰富完善，每个章节都应包含详细的信息、解释、示例，以及其他任何相关内容，以全面覆盖主题。\n\
+            4. 确保各章节之间过渡自然，保持文章的连贯性。\n5. 输出结果不应包含任何 XML 标签。只需提供一个 JSON 数组，包含以下键和值：\n\
+            \   - \"section\"：文章中每一节的标题\n   - \"bullets\"：该章节的要点概览\n\n<example>\n\
+            <input>\n<article_title> 气候变化对沿海城市的影响 </article_title>\n<article_outline>\n\
+            1. 引言\n2. 海平面上升\n3. 极端天气事件\n4. 社会经济后果\n5. 缓解与适应策略\n6. 结论\n</article_outline>\n\
+            </input>\n\n<output>\n[\n  {\n    \"section\": \"引言\",\n    \"bullets\"\
+            : [\n      \"概述气候变化及其全球影响\",\n      \"研究沿海城市影响的重要性\",\n      \"文章的目的与结构\"\
+            \n    ]\n  },\n  {\n    \"section\": \"海平面上升\",\n    \"bullets\": [\n\
+            \      \"解释气候变化引起的海平面上升\",\n      \"科学数据与预测\",\n      \"对沿海基础设施和生态系统的影响\"\
+            \n    ]\n  },\n  {\n    \"section\": \"极端天气事件\",\n    \"bullets\": [\n\
+            \      \"风暴和洪水发生频率与强度增加\",\n      \"近期事件的案例分析\",\n      \"应对挑战与准备工作\"\n\
+            \    ]\n  },\n  {\n    \"section\": \"社会经济后果\",\n    \"bullets\": [\n\
+            \      \"对当地经济（尤其是旅游和渔业）的影响\",\n      \"人口迁移问题\",\n      \"公共健康方面的担忧\"\
+            \n    ]\n  },\n  {\n    \"section\": \"缓解与适应策略\",\n    \"bullets\": [\n\
+            \      \"工程解决方案（如海堤）\",\n      \"城市规划和政策应对\",\n      \"社区参与与韧性建设\"\n \
+            \   ]\n  },\n  {\n    \"section\": \"结论\",\n    \"bullets\": [\n     \
+            \ \"对主要影响的总结\",\n      \"采取积极措施的重要性\",\n      \"对相关利益方的行动呼吁\"\n    ]\n\
+            \  }\n]\n</output>\n</example>\n</instruction>\n"
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: llm
+      position:
+        x: 333
+        y: 304.5
+      positionAbsolute:
+        x: 333
+        y: 304.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nfrom typing import List, Dict, Any\n\ndef main(arg1: str)\
+          \ -> Dict[str, List[Dict[str, Any]]]:\n    try:\n        data = json.loads(arg1)\n\
+          \n        # 验证 data 是否为列表\n        if not isinstance(data, list):\n    \
+          \        return {\"error\": \"Input JSON must be a list of objects.\"}\n\
+          \n        result = []\n        for item in data:\n            # 安全提取字段，防止\
+          \ KeyError\n            section = item.get(\"section\")\n            bullets\
+          \ = item.get(\"bullets\")\n\n            if section is not None and isinstance(bullets,\
+          \ list):\n                result.append({\n                    \"section\"\
+          : section,\n                    \"bullets\": bullets\n                })\n\
+          \n        return {\"result\": result}\n\n    except json.JSONDecodeError:\n\
+          \        return {\"error\": \"Invalid JSON input.\"}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - llm
+          - text
+          variable: arg1
+      height: 52
+      id: '1751372955963'
+      position:
+        x: 636
+        y: 304.5
+      positionAbsolute:
+        x: 636
+        y: 304.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 209
+        is_parallel: false
+        iterator_input_type: array[object]
+        iterator_selector:
+        - '1751372955963'
+        - result
+        output_selector:
+        - '1751372978630'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1751372976061start
+        title: 迭代
+        type: iteration
+        width: 508
+      height: 209
+      id: '1751372976061'
+      position:
+        x: 937.5714285714287
+        y: 304.5
+      positionAbsolute:
+        x: 937.5714285714287
+        y: 304.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 508
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1751372976061start
+      parentId: '1751372976061'
+      position:
+        x: 60
+        y: 80
+      positionAbsolute:
+        x: 997.5714285714287
+        y: 384.5
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1751372976061'
+          - item
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1751372976061'
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct-128K
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: d17e67b0-3875-4185-959f-372015755990
+          role: system
+          text: '你是一位资深的文档撰写专家。你的任务是撰写连贯的长篇内容。
+
+            '
+        - id: 2955567f-6650-4fc6-8e95-fa89d43d89dd
+          role: user
+          text: '你正在撰写一篇名为 {{#1751372839445.title#}}的文档。请根据以下信息撰写一个章节：{{#context#}}.
+
+            <完整大纲>{{#1751372839445.outline#}}</完整大纲>
+
+            在生成整篇文章时，请以完整大纲为参考。
+
+            '
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1751372978630'
+      parentId: '1751372976061'
+      position:
+        x: 204
+        y: 60
+      positionAbsolute:
+        x: 1141.5714285714287
+        y: 364.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "def main(arg1) -> dict:\n    result = \"\"  # 初始化 result 变量\n    for\
+          \ text in arg1:\n        result += text  # 拼接文本\n    return {\n        \"\
+          result\": result,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1751372976061'
+          - output
+          variable: arg1
+      height: 52
+      id: '1751373440370'
+      position:
+        x: 1507
+        y: 304.5
+      positionAbsolute:
+        x: 1507
+        y: 304.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1751373440370.result#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: '1751373462756'
+      position:
+        x: 1810
+        y: 304.5
+      positionAbsolute:
+        x: 1810
+        y: 304.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 34
+      y: 13
+      zoom: 0.7
