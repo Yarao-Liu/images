@@ -1,0 +1,611 @@
+app:
+  description: 思维导图
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 思维导图
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.20@a0297ff9ba92d57b12efa51dad87bbf68f6556979d2f32ed15fc833a3a1f4f39
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 100
+        batch_count_limit: 5
+        file_size_limit: 100
+        image_file_size_limit: 100
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1753508170162-source-llm-target
+      source: '1753508170162'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: llm-source-1753508238598-target
+      source: llm
+      sourceHandle: source
+      target: '1753508238598'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: answer
+      id: 1753508238598-source-answer-target
+      source: '1753508238598'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: 1753666960381-source-1753667018130-target
+      source: '1753666960381'
+      sourceHandle: source
+      target: '1753667018130'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: answer
+      id: 1753667018130-source-1753667026689-target
+      source: '1753667018130'
+      sourceHandle: source
+      target: '1753667026689'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1753508114318-source-1753667131456-target
+      source: '1753508114318'
+      sourceHandle: source
+      target: '1753667131456'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1753667131456-false-1753667300289-target
+      source: '1753667131456'
+      sourceHandle: 'false'
+      target: '1753667300289'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1753676939154-source-1753666960381-target
+      source: '1753676939154'
+      sourceHandle: source
+      target: '1753666960381'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: document-extractor
+      id: 1753677007742-source-1753676939154-target
+      source: '1753677007742'
+      sourceHandle: source
+      target: '1753676939154'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: answer
+      id: 1753677007742-fail-branch-1753677114220-target
+      source: '1753677007742'
+      sourceHandle: fail-branch
+      target: '1753677114220'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1753667131456-true-1753677007742-target
+      source: '1753667131456'
+      sourceHandle: 'true'
+      target: '1753677007742'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: document-extractor
+      id: 1753667131456-d252c198-e90b-4544-abf8-1badd7a5f4c0-1753508170162-target
+      source: '1753667131456'
+      sourceHandle: d252c198-e90b-4544-abf8-1badd7a5f4c0
+      target: '1753508170162'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: file
+          max_length: 48
+          options: []
+          required: false
+          type: file
+          variable: file
+      height: 88
+      id: '1753508114318'
+      position:
+        x: 30
+        y: 686
+      positionAbsolute:
+        x: 30
+        y: 686
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: THUDM/glm-4-9b-chat
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 862a01c4-0a8b-4d37-a763-e57c9f5dbdc1
+          role: system
+          text: "你是文档总结大师，擅长提炼文档核心内容并生成结构化大纲。你会深入理解文档内容，而不仅仅依赖标题，确保总结准确反映关键信息，并以思维导图形式呈现层级关系。\n\
+            \n**输入内容**：\n{{#1753508170162.text#}}\n**输出要求**：\n- 以Markdown格式输出，适合生成思维导图（如markmap工具）。\n\
+            - 使用层级结构：标题（#）表示主节点，无序列表（-）表示分支和子节点。\n- 确保内容精炼，关键信息通过有序或无序列表分条呈现。\n\n\
+            **参考格式**：\n# [中心主题]\n## [一级分支1]\n- [二级分支1.1]\n  - [三级分支1.1.1]\n  - [三级分支1.1.2]\n\
+            - [二级分支1.2]\n  - [三级分支1.2.1]\n  - [三级分支1.2.2]\n## [一级分支2]\n- [二级分支2.1]\n\
+            \  - [三级分支2.1.1]\n  - [三级分支2.1.2]\n- [二级分支2.2]\n  - [三级分支2.2.1]\n  - [三级分支2.2.2]\n\
+            ## [一级分支3]\n- [二级分支3.1]\n- [二级分支3.2]\n## 注意事项（可选）\n- [注意事项1]\n- [注意事项2]\n"
+        selected: false
+        title: LLM 1
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: llm
+      position:
+        x: 1453
+        y: 571
+      positionAbsolute:
+        x: 1453
+        y: 571
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1753508238598.body#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 2119
+        y: 571
+      positionAbsolute:
+        x: 2119
+        y: 571
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器 1
+        type: document-extractor
+        variable_selector:
+        - '1753508114318'
+        - file
+      height: 90
+      id: '1753508170162'
+      position:
+        x: 1120
+        y: 571
+      positionAbsolute:
+        x: 1120
+        y: 571
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-85
+            key: ''
+            type: text
+            value: '{{#llm.text#}}'
+          type: raw-text
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求1
+        type: http-request
+        url: http://10.11.24.34:6066/upload2
+        variables: []
+      height: 137
+      id: '1753508238598'
+      position:
+        x: 1786
+        y: 571
+      positionAbsolute:
+        x: 1786
+        y: 571
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1753676939154'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: THUDM/glm-4-9b-chat
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: bdaebe34-1abc-41ca-bd17-47f63b5c1d0d
+          role: system
+          text: "你是文档总结大师，擅长提炼文档核心内容并生成结构化大纲。你会深入理解文档内容，而不仅仅依赖标题，确保总结准确反映关键信息，并以思维导图形式呈现层级关系。\n\
+            \n**输入内容**：\n{{#context#}}\n**输出要求**：\n- 以Markdown格式输出，适合生成思维导图（如markmap工具）。\n\
+            - 使用层级结构：标题（#）表示主节点，无序列表（-）表示分支和子节点。\n- 确保内容精炼，关键信息通过有序或无序列表分条呈现。\n\n\
+            **参考格式**：\n# [中心主题]\n## [一级分支1]\n- [二级分支1.1]\n  - [三级分支1.1.1]\n  - [三级分支1.1.2]\n\
+            - [二级分支1.2]\n  - [三级分支1.2.1]\n  - [三级分支1.2.2]\n## [一级分支2]\n- [二级分支2.1]\n\
+            \  - [三级分支2.1.1]\n  - [三级分支2.1.2]\n- [二级分支2.2]\n  - [三级分支2.2.1]\n  - [三级分支2.2.2]\n\
+            ## [一级分支3]\n- [二级分支3.1]\n- [二级分支3.2]\n## 注意事项（可选）\n- [注意事项1]\n- [注意事项2]\n"
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1753666960381'
+      position:
+        x: 1453
+        y: 280
+      positionAbsolute:
+        x: 1453
+        y: 280
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-543
+            key: ''
+            type: text
+            value: '{{#1753666960381.text#}}'
+          type: raw-text
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求2
+        type: http-request
+        url: http://10.11.24.34:6066/upload2
+        variables: []
+      height: 137
+      id: '1753667018130'
+      position:
+        x: 1786
+        y: 280
+      positionAbsolute:
+        x: 1786
+        y: 280
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1753667018130.body#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 103
+      id: '1753667026689'
+      position:
+        x: 2119
+        y: 280
+      positionAbsolute:
+        x: 2119
+        y: 280
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: start with
+            id: e70300ba-dfab-485b-a772-fbf41e289e16
+            value: http
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: d252c198-e90b-4544-abf8-1badd7a5f4c0
+          conditions:
+          - comparison_operator: exists
+            id: 9c701ebf-51cc-4aa9-9afd-4cbd1ebd145b
+            value: ''
+            varType: file
+            variable_selector:
+            - '1753508114318'
+            - file
+          id: d252c198-e90b-4544-abf8-1badd7a5f4c0
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 172
+      id: '1753667131456'
+      position:
+        x: 363
+        y: 686
+      positionAbsolute:
+        x: 363
+        y: 686
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '未接收到文件信息，无法对文件内容生成思维导图。
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 116
+      id: '1753667300289'
+      position:
+        x: 1453
+        y: 712
+      positionAbsolute:
+        x: 1453
+        y: 712
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: true
+        selected: false
+        title: 文档提取器 2
+        type: document-extractor
+        variable_selector:
+        - '1753677007742'
+        - files
+      height: 90
+      id: '1753676939154'
+      position:
+        x: 1120
+        y: 280
+      positionAbsolute:
+        x: 1120
+        y: 280
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        error_strategy: fail-branch
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 下载文件
+        type: http-request
+        url: '{{#sys.query#}}'
+        variables: []
+      height: 160
+      id: '1753677007742'
+      position:
+        x: 787
+        y: 280
+      positionAbsolute:
+        x: 787
+        y: 280
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1753677007742.error_message#}}
+
+          {{#1753677007742.error_type#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 121
+      id: '1753677114220'
+      position:
+        x: 1120
+        y: 410
+      positionAbsolute:
+        x: 1120
+        y: 410
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -153.35000000000014
+      y: -91.05000000000007
+      zoom: 0.7
